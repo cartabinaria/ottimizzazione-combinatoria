@@ -1,0 +1,54 @@
+---
+tags:
+  - category/note
+  - status/finished
+  - topic/ottimizzazione-combinatoria
+date: 09-03-2025 19:31:27
+links:
+  - "[[lecture-05032025091441|Lecture 05032025091441]]"
+  - "[[lecture-12032025091447|Lecture 12032025091447]]"
+  - "[[lecture-19032025092241|Lecture 19032025092241]]"
+---
+# Problema del flusso massimo
+---
+## Introduzione
+> Un **problema del flusso massimo** (**MF**) e' un'istanza del [[problema-di-flusso|problema di flusso]] in cui la funzione obiettivo da massimizzare e' _il [[flusso|flusso]] stesso_.
+
+Formalmente, data una [[rete|rete]] $G = (N, A)$, e fissati due nodi $s$ (sorgente) e $t$ (destinazione), vogliamo trovare il _massimo_ valore $v$ tale che, se
+- $b_{s} = -v$,
+- $b_{t} = v$,
+- $b_{i} = 0$ per tutti gli altri nodi,
+
+allora esiste un flusso ammissibile (di qualsiasi costo). Di fatto, **non esistono neanche i costi in problemi del flusso massimo**.
+
+## Modellizzazione
+Il problema del flusso massimo si modellizza nel seguente modo:
+![[mf-modellizzazione.png]]
+
+## Rapporti con MCF
+Si tratta in effetti di una restrizione di [[problema-del-flusso-di-costo-minimo|MCF]]. Infatti, preso un problema di MF, possiamo estenderlo a un problema di MCF in cui:
+- _i costi sono nulli_;
+- _gli sbilanciamenti sono tutti nulli_;
+- _si aggiunge un arco fittizo da $t$ a $s$ con costo $-1$ e capacita' infinita_.
+
+Per esempio, il problema MF della rete
+![[mf.png]]
+
+equivale al problema MCF della rete
+![[mf-to-mcf.png]]
+
+Infatti, quell'arco aggiunto
+- avendo un costo negativo $-1$ dalla destinazione alla sorgente, si invalida il costo minimo, che diventa $-\infty$;
+- avendo capacita' illimitata, consente di trasportare il massimo flusso possibile.
+
+## Algoritmi
+Per studiare gli algoritmi risolutivi, e' necessario conoscere la nozione di:
+- [[taglio|taglio]], [[taglio-s-t|taglio s-t]];
+- [[grafo-residuo|grafo residuo]] e [[cammino-aumentante|cammino aumentante]].
+
+Gli algoritmi in questione sono:
+- [[algoritmo-di-ford-fulkerson|Algoritmo di Ford-Fulkerson]];
+- [[algoritmo-di-edmonds-karp|Algoritmo di Edmonds-Karp]];
+- [[algoritmo-di-goldberg-tarjan|Algoritmo di Goldberg-Tarjan]].
+
+## Referenze
